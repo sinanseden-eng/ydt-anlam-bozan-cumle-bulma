@@ -13,7 +13,7 @@ window.CATS = {
   bag:   {no:'03', name:'Bağlaç ve Gönderim', en:'Bağlaçlar ve zamirler', color:'#8F6400'},
   tekrar:{no:'04', name:'Tekrar ve Çelişki', en:'Gereksiz tekrar ve çelişki', color:'#8E2D5A'},
   uslup: {no:'05', name:'Üslup ve Anlatım Dili', en:'Anlatım dili ve ton', color:'#221B14'},
-  nuan:  {no:'06', name:'Detay, Kapsam ve Ölçü', en:'Ayrıntı ve aşırı iddia', color:'#5B3E96'}
+  nuan:  {no:'06', name:'Ayrıntı, Kapsam ve İddia', en:'Ayrıntı ve aşırı iddia', color:'#5B3E96'}
 };
 
 window.LESSONS = [
@@ -25,13 +25,13 @@ window.LESSONS = [
      ['Konuyla ilgisiz bilgi','Paragrafın ana düşüncesini geliştirmeyen tarihî ya da ilginç bilgiler konu dışına çıkabilir (1. soru: ampulün icadı).']
    ],
    steps:[
-     'İlk ve son cümleyi okuyup paragrafın özünü tek cümlede yazın.',
+     'İlk ve son cümleyi okuyup ana düşünceyi tek cümlede yazın.',
      'Her cümleyi bu özle karşılaştırın: ana düşünceyi mi geliştiriyor, başka bir konuya mı geçiyor?',
      'Kelime örtüşmesine kanmayın: aynı isim geçmek, aynı ana düşünceyi desteklemek demek değildir.',
-     'Aday cümleyi çıkarıp kalan dördü okuyun: kalan cümleler birbirine daha iyi bağlanıyorsa seçiminiz güçlenir.'
+     'Şüpheli cümleyi çıkarıp kalan dördünü okuyun. Cümleler birbirine daha iyi bağlanıyorsa seçiminizi kontrol edin.'
    ],
    trap:{t:'Ortak Kelime Tuzağı', d:'2. soruda Çin Seddi, 11. soruda QWERTY klavye paragraftaki sözcüklerle ilişkili görünür. Ancak ikisi de ana düşünceyi geliştirmez. Ortak kelimelere değil, cümlenin paragraftaki görevine bakın.'}},
-  {cat:'akis', title:'Akış ve Sıra: Kronoloji Zinciri', en:'Olayların ve adımların sırası',
+  {cat:'akis', title:'Akış ve Sıra: Zaman Sırası', en:'Olayların ve adımların sırası',
    roots:[
      ['Tarih sırası','Bir yaşam öyküsündeki tarihleri sıraya koyun: 1867 → 1891 → 1903 → 1911. Araya giren 1934 yılı akışı bozar (5. soru).'],
      ['Adımların sırası','first (önce), then (sonra), finally (sonunda) gibi sözler bir sırayı gösterir. Son adım ortadaysa akış bozulur (12. soru).'],
@@ -45,7 +45,7 @@ window.LESSONS = [
      'Karar sonrası kalan pasajı baştan okuyun: süreç tek yönde akmalı.'
    ],
    trap:{t:'Doğru Bilgi, Yanlış Yer', d:'Cümledeki bilgi doğru ve konuyla ilgili olabilir; yine de anlatıldığı yerde akışı bozabilir. 5. soruda Curie’nin ölümü sonda, 19. soruda sefer bilgisi başta yer alabilirdi. "Bu bilgi doğru mu?" kadar "Burada anlatılmalı mı?" diye de sorun.'}},
-  {cat:'bag', title:'Bağlaç ve Gönderim Zinciri', en:'Bağlaçlar ve zamirler',
+  {cat:'bag', title:'Bağlaçlar ve Zamirler', en:'Bağlaçlar ve zamirler',
    roots:[
      ['Bağlaç sizi yanıltmasın','by contrast (buna karşılık) ve therefore (bu yüzden) gibi sözler cümleleri bağlı gösterir. Ancak aradaki konu değişimini düzeltmez (4. ve 13. sorular).'],
      ['Zamirin karşılığı var mı?','this (bu), they (onlar) ve its (onun) gibi sözlerin önceki cümlelerde kimi ya da neyi gösterdiğini bulun (17. soru).'],
@@ -73,21 +73,21 @@ window.LESSONS = [
      'Çelişki varsa dört cümlenin ortak düşüncesini bulun. Tek bir cümle bunun tersini söylüyorsa onu inceleyin.'
    ],
    trap:{t:'Gereksiz Tekrar Tuzağı', d:'7. soruda In other words ile başlayan cümle ilk cümlenin söylediğini yeniden söyler. Gerçek bir açıklama düşünceyi anlaşılır kılar ya da örnek verir. Bu cümleyi çıkardığınızda bilgi eksilmiyorsa gereksiz bir tekrardır.'}},
-  {cat:'uslup', title:'Üslup ve Anlatım Dili Uyumu', en:'Anlatım dili ve ton',
+  {cat:'uslup', title:'Üslup ve Anlatım Dili', en:'Anlatım dili ve ton',
    roots:[
-     ['Kişisel anlatım','Bilgi veren resmî bir paragrafta nobody I know (tanıdığım hiç kimse) ya da my uncle (amcam) gibi kişisel sözler üsluba uymayabilir (9. soru ve 3. alıştırma cümlesi).'],
+     ['Kişisel anlatım','Bilgi veren resmî bir paragrafta nobody I know (tanıdığım hiç kimse) ya da my uncle (amcam) gibi kişisel sözler üsluba uymayabilir (9. soru ve amca örneği).'],
      ['Ünlem ve duygu','What a terrifying experience! (Ne korkunç bir deneyim!) gibi öznel yorumlar bilgi veren tarafsız bir metnin dilinden ayrılır (15. soru).'],
      ['Sohbet dili','And quite honestly (açıkçası), to be honest (dürüst olmak gerekirse) gibi sözler resmî anlatımdan çok sohbet diline yakındır (9. ve 18. sorular).'],
      ['Doğru bilgi de uyumsuz olabilir','Cümle doğru bilgi verse bile diğer cümlelerden çok farklı bir dille yazılmışsa bütünlüğü bozabilir.']
    ],
    steps:[
      'Paragrafın dilini belirleyin: resmî ve bilgilendirici mi, yoksa samimi bir anlatım mı var?',
-     'Zamirleri sayın: "I / you / we" geçiyorsa resmî paragrafta şüphe artar.',
+     'I (ben), you (sen/siz) ve we (biz) gibi kişisel sözler resmî paragrafta farklı duruyor mu, bakın.',
      'Ünlem, "honestly / by the way" gibi işaret sözcüklerini tarayın.',
      'Şüpheli cümlenin hem anlatım dilini hem ana düşünceyle ilişkisini kontrol edin.'
    ],
    trap:{t:'Doğru Bilgi, Farklı Dil', d:'9. sorudaki musluk cümlesi su tasarrufuyla ilgilidir. Fakat And quite honestly, nobody I know… sözü, verilerle anlatılan resmî bir paragrafın ortasında sohbet eder gibi durur. Konuyla ilgili olması, anlatım dilinin de uyduğu anlamına gelmez.'}},
-  {cat:'nuan', title:'Detay, Kapsam ve Ölçü', en:'Ayrıntı ve aşırı iddia',
+  {cat:'nuan', title:'Ayrıntı, Kapsam ve İddia', en:'Ayrıntı ve aşırı iddia',
    roots:[
      ['Gereksiz ayrıntı','Ana düşünceye katkısı olmayan küçük bilgiler paragrafta gereksiz kalabilir: keşfi yapan gencin mesleği gibi (14. soru).'],
      ['Kesin konuşan ifadeler','all (hepsi), without exception (istisnasız) ve never (asla) gibi sözler güçlü kanıt gerektirir (8. ve 20. sorular).'],
@@ -95,7 +95,7 @@ window.LESSONS = [
      ['Temkinli ifadeler','seem (görünmek), roughly (yaklaşık) gibi sözler kesin konuşmaz. Aşırı kesin iddialarla aralarındaki farka dikkat edin.']
    ],
    steps:[
-     'Kapsam sözcüklerini (all, some, many, without exception) daire içine alın ve uçları işaretleyin.',
+     'all (hepsi), some (bazı), many (birçok) ve without exception (istisnasız) sözlerini işaretleyin. Hangileri kesin, hangileri temkinli?',
      'Çok kesin bir iddiayı destekleyen kanıt paragrafta var mı? Yoksa cümleyi yeniden değerlendirin.',
      'Kişisel bir ayrıntı ana düşünceyi geliştiriyor mu? Katkısı yoksa gereksiz olabilir.',
      'Paragraf temkinli mi, kesin mi konuşuyor? Şüpheli cümleyi bu anlatımla karşılaştırın.'
