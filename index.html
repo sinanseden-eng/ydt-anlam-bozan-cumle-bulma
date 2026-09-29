@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<!--
+  YDT ANLAM BUTUNLUGU LAB - Sayi 06 (IKI DOSYALI MIMARI)
+  DOSYA 1/2: index.html (tasarim + uygulama)
+  DOSYA 2/2: veri.js (dersler + akis lab + 20 soru) -> AYNI klasore
+  BAGLANTI: <script src="veri.js"></script> satiri sorulari yukler.
+  veri.js eksikse sayfa kirmizi bantla soyler; tasarim yine acilir.
+-->
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YDT Anlam Bütünlüğü Lab — Anlam Bütünlüğünü Bozan Cümle</title>
+<meta name="description" content="YDT/YDS/YÖKDİL anlam bütünlüğünü bozan cümle soruları: 6 beceri dersi, Akış Lab, 20 pasajlık deneme ve A4 çalışma kâğıdı.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&display=swap" rel="stylesheet">
+<script>
+window.__LAB={errs:[]};
+window.__showErr=function(t){
+  try{
+    var b=document.getElementById('errbar');
+    if(!b){b=document.createElement('div');b.id='errbar';(document.body||document.documentElement).appendChild(b);}
+    b.innerHTML=t;b.style.display='block';
+  }catch(_){}
+};
+window.addEventListener('error',function(e){
+  if(e&&e.message&&!/veri\.js/i.test(String(e.message||''))){
+    window.__LAB.errs.push(e.message+(e.lineno?(' — satır '+e.lineno):''));
+  }
+});
+</script>
+<style>
+:root{--paper:#F7F2E5;--card:#FCFAF2;--paper2:#EFE8D5;--ink:#211B12;--ink2:#6A5F4C;--line:#D9CFB8;--ok:#1E7A3E;--okbg:#E4F1E4;--bad:#C22B1E;--badbg:#F7E4E0;--hl:#F6DA49;--umark:#B7D5F2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.serif{font-family:'Newsreader',Georgia,serif}
+a{color:inherit}
+.ic{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.12em;flex:none}
+#errbar{display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:84px;z-index:200;max-width:92vw;background:var(--bad);color:#fff;font-size:.78rem;font-weight:700;padding:12px 18px;border:2px solid var(--ink);box-shadow:4px 4px 0 rgba(0,0,0,.3);line-height:1.6}
+.topbar{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:2px solid var(--ink)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.04em;font-size:.95rem;white-space:nowrap}
+.brand svg{width:30px;height:30px;flex:none}
+.brand .sub{font-family:'Newsreader',serif;font-style:italic;font-weight:500;color:var(--ink2);margin-left:2px}
+.topnav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{text-decoration:none;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:6px 10px;border-bottom:2px solid transparent;white-space:nowrap}
+.topnav a:hover{background:var(--paper2)}
+.topnav a.on{border-bottom-color:var(--ink)}
+.seri{background:var(--ink);color:#DDD4C0;border-bottom:2px solid var(--ink)}
+.seri .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:7px 22px;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.seri .lb{color:#C9BFA8;letter-spacing:.2em}
+.seri a{color:#F6DA49;text-decoration:none;border-bottom:1.5px dotted #8A7F66;padding-bottom:1px}
+.seri a:hover{color:#fff;border-bottom-color:#fff}
+.seri .cur{color:#FCFAF2;background:#3A3223;padding:3px 10px}
+.mast{border-bottom:2px solid var(--ink);padding:8px 0}
+.mast .wrap{display:flex;justify-content:space-between;gap:12px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--ink2)}
+.hero{padding:54px 0 30px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero-kicker{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.22em;color:var(--bad);margin-bottom:14px}
+h1.big{font-weight:800;font-size:clamp(2.6rem,6.2vw,4.6rem);line-height:.98;letter-spacing:-.015em;text-transform:uppercase}
+h1.big .mark{background:var(--hl);box-shadow:.14em 0 0 var(--hl),-.14em 0 0 var(--hl)}
+h1.big .serif{display:block;font-weight:500;font-style:italic;text-transform:none;font-size:.62em;margin-top:.18em}
+.hero-lead{font-family:'Newsreader',serif;font-size:1.15rem;color:var(--ink2);max-width:52ch;margin:22px 0 26px}
+.hero-lead b{color:var(--ink)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:700;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;padding:12px 20px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 rgba(33,27,18,.35);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(33,27,18,.35)}
+.btn.ghost{background:var(--card);color:var(--ink)}
+.btn.small{padding:8px 14px;font-size:.72rem;box-shadow:3px 3px 0 rgba(33,27,18,.3)}
+.hero-badges{display:flex;gap:18px;margin-top:28px;flex-wrap:wrap}
+.hb{border-top:2px solid var(--ink);padding-top:6px;min-width:74px}
+.hb b{display:block;font-size:1.35rem;font-weight:800}
+.hb span{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2)}
+.stack{position:relative;height:330px}
+.stackcard{position:absolute;width:88%;background:var(--card);border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(33,27,18,.28);padding:16px 18px 14px}
+.stackcard .tag{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:#FCFAF2;background:var(--c);display:inline-block;padding:3px 8px;margin-bottom:9px}
+.stackcard p{font-family:'Newsreader',serif;font-style:italic;font-size:1.02rem;line-height:1.35}
+.stackcard small{display:block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--ink2);margin-top:8px}
+.stackcard:nth-of-type(1){right:0;top:0;transform:rotate(-3.2deg);border-left:6px solid var(--c)}
+.stackcard:nth-of-type(2){left:0;top:112px;transform:rotate(1.8deg);border-left:6px solid var(--c);z-index:2}
+.stackcard:nth-of-type(3){right:6%;top:224px;transform:rotate(-1.4deg);border-left:6px solid var(--c);z-index:3}
+.stamp{position:absolute;right:-6px;top:-24px;width:128px;height:128px;z-index:5;transform:rotate(-12deg);pointer-events:none;color:var(--bad);opacity:.85}
+.strips{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--card)}
+.strip{display:grid;grid-template-columns:64px 210px 1fr 60px;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.strip:last-child{border-bottom:none}
+.strip:hover{background:var(--paper2)}
+.strip .num{font-weight:800;font-size:1.3rem;color:var(--c);border-right:3px solid var(--c);padding-right:12px}
+.strip .nm b{display:block;font-weight:800;font-size:.95rem}
+.strip .nm span{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2)}
+.strip .ex{font-family:'Newsreader',serif;font-style:italic;color:var(--ink2);font-size:.95rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.strip .cnt{text-align:right;font-weight:800;font-size:.8rem;color:var(--c);white-space:nowrap}
+section{padding:64px 0 20px}
+.sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:3px solid var(--ink);padding-bottom:14px;margin-bottom:30px;flex-wrap:wrap}
+.sec-head .no{font-family:'Newsreader',serif;font-style:italic;font-size:1.15rem;color:var(--ink2)}
+.sec-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;letter-spacing:-.01em;text-transform:uppercase}
+.sec-head .d{margin-left:auto;font-size:.85rem;color:var(--ink2);max-width:38ch}
+.lesson{border:2px solid var(--ink);background:var(--card);margin-bottom:16px;box-shadow:5px 5px 0 rgba(33,27,18,.18)}
+.lesson.open{box-shadow:8px 8px 0 rgba(33,27,18,.22)}
+.lesson-h{display:grid;grid-template-columns:70px 1fr 40px;align-items:center;gap:10px;padding:0;cursor:pointer;border:none;background:transparent;font-family:inherit;width:100%;text-align:left}
+.lesson-h .cbar{align-self:stretch;display:flex;align-items:center;justify-content:center;color:var(--c);font-weight:800;font-size:1.35rem;background:color-mix(in srgb,var(--c) 12%,transparent);border-right:3px solid var(--c)}
+.lesson-h .tts{padding:14px 6px}
+.lesson-h .tts b{display:block;font-size:1.12rem;font-weight:800}
+.lesson-h .tts span{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink2)}
+.lesson-h .chev{color:var(--ink2);display:flex;justify-content:center;transition:transform .2s}
+.lesson.open .chev{transform:rotate(180deg)}
+.lesson-b{display:none;padding:22px;border-top:2px solid var(--line)}
+.lesson.open .lesson-b{display:block}
+.lesson-b .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.roots-t{width:100%;border-collapse:collapse;font-size:.9rem}
+.roots-t td{border:1px solid var(--line);padding:8px 12px;vertical-align:top}
+.roots-t td:first-child{font-family:'Newsreader',serif;font-style:italic;font-size:.95rem;width:52%;background:color-mix(in srgb,var(--c) 6%,transparent)}
+.roots-t td:last-child{color:var(--ink2);font-size:.82rem}
+.h-mini{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--c);margin:0 0 8px}
+.steps{list-style:none;counter-reset:st}
+.steps li{counter-increment:st;position:relative;padding-left:34px;margin-bottom:12px;font-size:.92rem}
+.steps li::before{content:counter(st);position:absolute;left:0;top:1px;width:22px;height:22px;border:2px solid var(--c);color:var(--c);font-weight:800;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+.trapbox{border:2px dashed var(--c);background:color-mix(in srgb,var(--c) 7%,transparent);padding:14px 16px;margin-top:16px;font-size:.88rem}
+.trapbox b{color:var(--c);text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;display:block;margin-bottom:5px}
+.modalmod{border:2px solid var(--ink);background:var(--card);box-shadow:8px 8px 0 rgba(33,27,18,.18);padding:26px;margin-top:30px}
+.modalmod table{width:100%;border-collapse:collapse;font-size:.9rem;margin:14px 0 16px}
+.modalmod th{background:var(--ink);color:var(--paper);text-align:left;padding:8px 12px;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em}
+.modalmod td{border:1px solid var(--line);padding:9px 12px;vertical-align:top}
+.modalmod td:first-child{font-weight:800;white-space:nowrap}
+.exbox{background:var(--paper2);border-left:4px solid var(--ink);padding:12px 16px;font-family:'Newsreader',serif;font-style:italic;font-size:.95rem}
+#akis .lab{background:var(--paper2);border:2px solid var(--ink);padding:30px;box-shadow:8px 8px 0 rgba(33,27,18,.18)}
+.lab-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:26px}
+.rootcard{background:var(--card);border:2px solid var(--ink);box-shadow:6px 6px 0 rgba(33,27,18,.25);padding:26px;min-height:150px}
+.rootcard .lbl{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.18em;color:var(--ink2);margin-bottom:10px}
+.rootcard .root{font-family:'Newsreader',serif;font-style:italic;font-size:1.35rem;line-height:1.35}
+.rootcard .tr{font-size:.85rem;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.catbtns{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:18px}
+.catb{font-family:inherit;font-weight:700;font-size:.74rem;padding:10px 4px;border:2px solid var(--c);background:color-mix(in srgb,var(--c) 8%,transparent);color:var(--ink);cursor:pointer}
+.catb:hover{background:var(--c);color:var(--card)}
+.catb.wasright{background:var(--c);color:var(--card)}
+.catb.waswrong{background:var(--bad);border-color:var(--bad);color:var(--card)}
+.simfb{margin-top:16px;border-top:2px solid var(--line);padding-top:14px;font-size:.9rem;display:none}
+.simfb.show{display:block}
+.simfb .verdict{font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
+.simfb .verdict.ok{color:var(--ok)} .simfb .verdict.no{color:var(--bad)}
+.simside{display:flex;flex-direction:column;gap:12px}
+.simstat{background:var(--card);border:2px solid var(--ink);padding:14px 16px}
+.simstat b{font-size:1.7rem;font-weight:800;display:block;line-height:1.1}
+.simstat span{font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink2)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--card);background:var(--c);padding:4px 10px}
+.footnote{font-size:.78rem;color:var(--ink2);font-style:italic;font-family:'Newsreader',serif;margin-top:10px}
+.partdiv{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:34px 0 18px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:12px 18px;box-shadow:6px 6px 0 rgba(33,27,18,.2)}
+.partdiv b{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase}
+.partdiv span{font-size:.68rem;color:#B7AD97;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.sq{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);border:2px solid var(--ink);background:var(--card);box-shadow:5px 5px 0 rgba(33,27,18,.15);margin:18px 0}
+.sq-b{border-right:2px solid var(--line);display:flex;flex-direction:column;background:color-mix(in srgb,var(--c) 4%,var(--card))}
+.sq-tab{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 14px;border-bottom:2px solid var(--line);font-size:.6rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);background:var(--paper2)}
+.sq-tab b{color:var(--ink)}
+.sq-body{padding:14px 18px}
+.fact{font-family:'Newsreader',serif;font-size:1.04rem;line-height:1.7;margin-bottom:10px;cursor:pointer;transition:background .15s}
+.fact:last-child{margin-bottom:0}
+.fact:hover{background:color-mix(in srgb,var(--umark) 35%,transparent)}
+.fact .fr{font-family:'Bricolage Grotesque',sans-serif;font-style:normal;font-weight:800;color:var(--c);font-size:.76rem;margin-right:4px}
+.fact.umark{background:var(--umark);box-shadow:.28em 0 0 var(--umark),-.28em 0 0 var(--umark)}
+.fact.evid{background:var(--hl);box-shadow:.28em 0 0 var(--hl),-.28em 0 0 var(--hl)}
+.fact.evid.umark{background:linear-gradient(110deg,var(--hl) 0 47%,var(--umark) 47% 100%)}
+.sq-r{padding:16px 20px;display:flex;flex-direction:column}
+.qtop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.qtop .chip{background:var(--c)}
+.qtop .qn{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.qtop .pts{margin-left:auto;font-size:.66rem;color:var(--ink2);font-style:italic;font-family:'Newsreader',serif}
+.stem{font-family:'Newsreader',serif;font-size:1.1rem;line-height:1.45;margin-bottom:16px;cursor:pointer;transition:background .15s}
+.stem:hover{background:color-mix(in srgb,var(--umark) 30%,transparent)}
+.stem.umark{background:var(--umark);box-shadow:.28em 0 0 var(--umark),-.28em 0 0 var(--umark)}
+.stem .kw{font-style:normal;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;text-decoration:underline;text-decoration-color:var(--c);text-decoration-thickness:2.5px;text-underline-offset:4px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:grid;grid-template-columns:34px 1fr 26px 30px;align-items:start;gap:12px;padding:10px 12px;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;font-family:inherit;font-size:.95rem;text-align:left;width:100%;color:var(--ink);transition:border-color .12s,background .12s}
+.sq:not(.answered) .opt:hover{border-color:var(--ink);background:var(--paper2)}
+.opt .key{font-weight:800;border:1.5px solid var(--ink);width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:.8rem;background:var(--card);flex:none}
+.opt .mk{display:flex;justify-content:center;align-items:center;color:transparent}
+.pen{width:26px;height:26px;flex:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink2);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.pen:hover{border-color:var(--ink);color:var(--ink);background:color-mix(in srgb,var(--umark) 60%,var(--card))}
+.pen.on{background:var(--umark);border-color:var(--ink);color:var(--ink)}
+.opt.umark{border:2px solid var(--ink);background:color-mix(in srgb,var(--umark) 40%,var(--paper))}
+.answered .opt{cursor:default}
+.answered .opt.correct{border:2px solid var(--ok);background:var(--okbg)}
+.answered .opt.correct .key{background:var(--ok);color:#fff;border-color:var(--ok)}
+.answered .opt.correct .mk{color:var(--ok)}
+.answered .opt.wrongpick{border:2px solid var(--bad);background:var(--badbg)}
+.answered .opt.wrongpick .key{background:var(--bad);color:#fff;border-color:var(--bad)}
+.answered .opt.wrongpick .mk{color:var(--bad)}
+.fb{display:none;margin-top:18px;border:2px solid var(--ink)}
+.fb.show{display:block}
+.fb-h{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;padding:10px 16px}
+.fb-h.ok{background:var(--ok)} .fb-h.no{background:var(--bad)}
+.fb-b{padding:18px;background:var(--card)}
+.fb-b h4{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--ink2);margin:18px 0 7px}
+.fb-b h4:first-child{margin-top:0}
+.fb-b h4 b{color:var(--ink)}
+.fb-p{font-size:.93rem}
+.evq{border-left:4px solid var(--c);background:color-mix(in srgb,var(--c) 7%,transparent);padding:12px 16px;font-family:'Newsreader',serif;font-style:italic;font-size:.98rem;margin:8px 0}
+.dump{list-style:none;border:1px solid var(--line)}
+.dump li{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:9px 12px;border-bottom:1px solid var(--line);font-size:.88rem}
+.dump li:last-child{border-bottom:none}
+.dump .k{font-weight:800}
+.dump li.okr{background:var(--okbg)} .dump li.okr .k{color:var(--ok)}
+.dump li.mine{background:var(--badbg)} .dump li.mine .k{color:var(--bad)}
+.fb-duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.fb-box{border:1.5px solid var(--line);padding:12px 14px;font-size:.87rem}
+.fb-box.tint{border-color:var(--c);background:color-mix(in srgb,var(--c) 7%,transparent)}
+.fb-box b{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:var(--c);margin-bottom:5px}
+.fb-act{margin-top:16px}
+.bignum-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.bignum{border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 rgba(33,27,18,.18);padding:18px;text-align:center}
+.bignum b{display:block;font-size:2.4rem;font-weight:800;line-height:1}
+.bignum span{font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink2)}
+.catbar{display:grid;grid-template-columns:210px 1fr 90px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.catbar .nm{font-weight:800;font-size:.88rem}
+.catbar .nm span{display:block;font-weight:500;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2)}
+.catbar .track{height:16px;border:1.5px solid var(--ink);background:var(--paper2);position:relative}
+.catbar .fill{position:absolute;inset:0;width:0;background:var(--c);transition:width .5s}
+.catbar .sc{text-align:right;font-weight:800;font-size:.85rem}
+.report-msg{margin:22px 0;font-size:.95rem;border-left:4px solid var(--ink);padding:10px 16px;background:var(--card)}
+.reset-row{margin-top:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.confirmbox{display:none;gap:10px;align-items:center}
+.confirmbox.show{display:flex}
+#calisma .ws-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+#calisma .ws-note{font-size:.82rem;color:var(--ink2);max-width:78ch;margin-bottom:22px}
+.ws-doc{--c:#14110B;max-width:820px;margin:0 auto;background:#FFFEF9;border:2px solid var(--ink);box-shadow:10px 10px 0 rgba(33,27,18,.18);color:#14110B}
+.ws-cover{padding:24px 34px 20px;border-bottom:3px double #14110B}
+.ws-hatch{height:8px;background:repeating-linear-gradient(45deg,#14110B 0 5px,transparent 5px 11px);margin-bottom:16px}
+.ws-top{display:flex;align-items:center;gap:10px;font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#6A5F4C;margin-bottom:14px}
+.ws-mark{width:26px;height:26px;border:2.5px solid #14110B;color:#C13F14;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+.ws-top .ws-tr{margin-left:auto}
+.ws-title{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;letter-spacing:-.01em;text-transform:uppercase;line-height:1}
+.ws-sub{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.18em;margin:8px 0 3px;color:#C13F14}
+.ws-ed{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6A5F4C;margin-bottom:18px}
+.ws-id{display:flex;gap:18px;flex-wrap:wrap;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid #14110B;padding:10px 14px;margin-bottom:16px}
+.ws-id span{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.ws-id i{display:inline-block;border-bottom:1.2px solid #14110B;min-width:110px;height:1em;font-style:normal}
+.ws-id i.w-sm{min-width:56px}
+.ws-inst{border:1.5px solid #14110B;padding:12px 16px 10px;margin-bottom:18px}
+.ws-inst>b{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.ws-inst ol{margin-left:18px;font-size:.85rem;line-height:1.55}
+.ws-inst li{margin-bottom:5px}
+.ws-at{font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.ws-ans{width:100%;border-collapse:collapse}
+.ws-ans th{border:1.2px solid #14110B;font-size:.78rem;font-weight:800;padding:5px 2px;background:#EFE8D5}
+.ws-ans td{border:1.2px solid #14110B;text-align:center;padding:7px 2px}
+.bub{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border:1.2px solid #14110B;border-radius:50%;font-size:10px;font-weight:800;margin:0 3px;vertical-align:middle}
+.ws-rub{margin-top:16px}
+.ws-rub>b{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}
+.ws-rub table{width:100%;border-collapse:collapse;font-size:.8rem}
+.ws-rub td{border:1.2px solid #14110B;padding:5px 10px}
+.ws-rub td:first-child{font-weight:800;white-space:nowrap;background:#EFE8D5}
+.ws-credit{margin-top:14px;font-size:.62rem;color:#6A5F4C;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.ws-pas{padding:22px 34px 26px;border-bottom:3px double #14110B}
+.ws-ph{display:flex;align-items:baseline;gap:12px;border-bottom:1.5px solid #14110B;padding-bottom:8px;margin-bottom:14px;flex-wrap:wrap}
+.ws-ph .ws-pno{font-weight:800;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;background:#14110B;color:#FFFEF9;padding:3px 9px;flex:none}
+.ws-ph h3{font-family:'Newsreader',serif;font-weight:600;font-size:1.25rem;line-height:1.2}
+.ws-ph .ws-pm{font-size:.66rem;color:#6A5F4C;margin-left:auto;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.ws-note-line{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#6A5F4C;margin:10px 0 14px}
+.ws-q{margin:14px 0 0}
+.ws-qq{font-family:'Newsreader',serif;font-size:1rem;line-height:1.5}
+.ws-qq b{font-family:'Bricolage Grotesque',sans-serif}
+.ws-oo{list-style:none;margin:8px 0 0}
+.ws-oo li{display:grid;grid-template-columns:26px 1fr;gap:6px;padding:2.5px 0;font-size:.94rem;line-height:1.45}
+.ws-oo .k{font-weight:800}
+.ws-key{padding:24px 34px 28px}
+.ws-kh{display:flex;align-items:center;gap:12px;background:#14110B;color:#FFFEF9;padding:12px 16px;margin-bottom:16px;flex-wrap:wrap}
+.ws-kh b{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.ws-kh span{font-size:.68rem;color:#C9BFA8;letter-spacing:.05em;text-transform:uppercase;font-weight:700}
+.ws-kgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:7px;margin-bottom:16px}
+.kg{border:1.5px solid #14110B;text-align:center;padding:7px 2px;font-size:.92rem;font-weight:800;background:#EFE8D5}
+.kg span{color:#6A5F4C;margin-right:6px}
+.kg b{font-size:1.05rem}
+.ws-ksum{width:100%;border-collapse:collapse;font-size:.84rem;margin-bottom:10px}
+.ws-ksum th{background:#14110B;color:#FFFEF9;text-align:left;padding:6px 10px;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase}
+.ws-ksum td{border:1.2px solid #14110B;padding:5px 10px}
+.ws-ksum td:first-child{font-weight:800}
+.ws-kfoot{font-size:.66rem;color:#6A5F4C;font-style:italic;font-family:'Newsreader',serif;margin-bottom:18px}
+.ws-kq{border:1.2px solid #C9BFA8;border-left:4px solid var(--c);padding:11px 15px;margin-bottom:10px}
+.ws-kqh{display:flex;align-items:center;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+.ws-kqh b{font-size:.95rem;letter-spacing:.04em}
+.ws-kqh span{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--c);border:1.2px solid var(--c);padding:2px 8px}
+.ws-kw{font-size:.88rem;line-height:1.55}
+.ws-ke{font-size:.82rem;font-family:'Newsreader',serif;font-style:italic;color:#4A4335;border-left:2px solid #C9BFA8;padding-left:10px;margin:6px 0}
+.ws-ks{font-size:.84rem;line-height:1.5;color:#3A3223}
+body.hidekey .ws-key{display:none}
+footer{margin-top:70px;background:var(--ink);color:var(--paper);padding:44px 0 34px}
+footer .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:44px}
+footer h5{font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:#C9BFA8;margin-bottom:12px}
+footer p{font-size:.86rem;color:#DDD4C0;line-height:1.7}
+footer .fl{font-family:'Newsreader',serif;font-style:italic}
+.deploy{border:1.5px solid #4A4335;padding:18px}
+.deploy ol{margin:10px 0 0 18px;font-size:.84rem;color:#DDD4C0}
+.deploy li{margin-bottom:8px}
+.deploy code{background:#31291C;padding:2px 7px;font-size:.8rem;border:1px solid #4A4335}
+.footrow{border-top:1px solid #4A4335;margin-top:34px;padding-top:16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.72rem;color:#B7AD97;letter-spacing:.05em}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,80px);background:var(--ink);color:var(--paper);padding:11px 22px;font-size:.82rem;font-weight:700;letter-spacing:.05em;box-shadow:5px 5px 0 rgba(0,0,0,.3);opacity:0;transition:transform .3s,opacity .3s;z-index:99;pointer-events:none}
+.toast.show{transform:translate(-50%,0);opacity:1}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sq,.partdiv{animation:rise .45s ease both}
+@media(prefers-reduced-motion:reduce){.sq,.partdiv{animation:none}.btn{transition:none}}
+@media print{
+  @page{size:A4;margin:13mm}
+  html,body{background:#fff}
+  body{font-size:10.5pt}
+  .topbar,.seri,.mast,.hero,.strips,section:not(#calisma),footer,.toast,#errbar{display:none!important}
+  #calisma{padding:0}
+  #calisma .sec-head,#calisma .ws-bar,#calisma .ws-note{display:none!important}
+  #calisma .wrap{max-width:none;padding:0}
+  .sq,.partdiv{animation:none}
+  .ws-doc{max-width:none;border:none;box-shadow:none;background:#fff}
+  .ws-cover{padding:0 0 2mm;border-bottom:3px double #14110B}
+  .ws-pas{padding:0 0 3mm;border-bottom:3px double #14110B;break-before:page}
+  .ws-key{padding:0;break-before:page}
+  .ws-q,.ws-kq{break-inside:avoid}
+  .ws-qq{font-size:10pt}
+  .ws-oo li{font-size:9.5pt}
+  .ws-kw,.ws-ks{font-size:9pt}
+  .ws-ke{font-size:8.5pt}
+  body.onlykey .ws-cover,body.onlykey .ws-pas{display:none!important}
+  body.onlykey .ws-key{display:block!important}
+}
+@media(max-width:920px){
+  .hero .wrap{grid-template-columns:1fr}
+  .stack{height:auto;display:grid;gap:12px;max-width:430px}
+  .stackcard{position:static;transform:none;width:100%}
+  .stamp{display:none}
+  .lesson-b .grid{grid-template-columns:1fr}
+  .lab-grid{grid-template-columns:1fr}
+  .catbtns{grid-template-columns:repeat(2,1fr)}
+  .fb-duo{grid-template-columns:1fr}
+  .bignum-row{grid-template-columns:repeat(2,1fr)}
+  .catbar{grid-template-columns:130px 1fr 70px}
+  footer .wrap{grid-template-columns:1fr}
+  .strip{grid-template-columns:44px 1fr 56px}
+  .strip .ex{display:none}
+  .sq{grid-template-columns:1fr}
+  .sq-b{border-right:none;border-bottom:2px solid var(--line)}
+  .ws-cover,.ws-pas,.ws-key{padding-left:18px;padding-right:18px}
+  .ws-kgrid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body id="top">
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="#top">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1.5" y="1.5" width="29" height="29" fill="none" stroke="#211B12" stroke-width="3"/><text x="16" y="22.5" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="17" fill="#0E7568">A</text></svg>
+    YDT ANLAM BÜTÜNLÜĞÜ LAB <span class="sub">opa fluent</span>
+  </a>
+  <nav class="topnav" id="topnav">
+    <a href="#dersler">Dersler</a><a href="#akis">Akış Lab</a><a href="#deneme">Deneme</a><a href="#karne">Karne</a><a href="#calisma">Kâğıt</a>
+  </nav>
+</div></header>
+
+<!-- SERİ BAĞLANTILARI: href="#" yerlerine kendi Netlify adreslerinizi yazın -->
+<div class="seri"><div class="wrap">
+  <span class="lb">Serİ</span>
+  <a href="#">01 · Reading</a>
+  <a href="#">02 · Diyalog &amp; Durum</a>
+  <a href="#">03 · Zamir &amp; Nicelik</a>
+  <a href="#">04 · Cümle Tamamlama</a>
+  <a href="#">05 · Çeviri</a>
+  <span class="cur">06 · Anlam Bütünlüğü</span>
+</div></div>
+
+<div class="mast"><div class="wrap"><span>OPA FLUENT YAYINLARI</span><span>YDT · YDS · YÖKDİL</span><span>ANLAM BÜTÜNLÜĞÜ BÜLTENİ · SAYI 06</span></div></div>
+
+<div class="hero"><div class="wrap">
+  <div>
+    <p class="hero-kicker">Konu sapması · Akış zinciri · Bağlaç maskesi · Üslup uyumu</p>
+    <h1 class="big">Paragraftaki <span class="mark">yabancı cümleyi</span><span class="serif">adım adım teşhis et.</span></h1>
+    <p class="hero-lead">Serinin altıncı sayısı — Reading (01) · Diyalog &amp; Durum (02) · Zamir &amp; Nicelik (03) · Cümle Tamamlama (04) · Çeviri (05)&rsquo;ten sonra: <b>6 beceri dersi</b> (konu sapması, akış-sıra, bağlaç-gönderim, tekrar-çelişki, üslup-kayıt, detay-kapsam), <b>16 kalıplı Akış Lab</b> ve <b>20 özgün soru</b> — her biri beş cümlelik pasaj ve (I)–(V) Roman rakamlı şıklar. Her şıkta tek tek geribildirim, <b>kanıt vurgusu</b>, A4 çalışma kâğıdı.</p>
+    <div class="cta-row">
+      <a class="btn" href="#dersler">Derse başla <svg class="ic" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a class="btn ghost" href="#deneme">Denemeye geç</a>
+      <a class="btn ghost" href="#calisma"><svg class="ic" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Kâğıda git</a>
+    </div>
+    <div class="hero-badges">
+      <div class="hb"><b>6</b><span>Beceri dersi</span></div>
+      <div class="hb"><b>20</b><span>Beş cümlelik pasaj</span></div>
+      <div class="hb"><b>16</b><span>Akış lab kalıbı</span></div>
+      <div class="hb"><b>A4</b><span>baskıya hazır</span></div>
+    </div>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <svg class="stamp" viewBox="0 0 128 128"><circle cx="64" cy="64" r="60" fill="none" stroke="currentColor" stroke-width="3.5"/><circle cx="64" cy="64" r="46" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="64" y="58" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="13" fill="currentColor" letter-spacing="1.5">ÖSYM</text><text x="64" y="76" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="13" fill="currentColor" letter-spacing="1.5">FORMAT</text></svg>
+    <div class="stackcard" style="--c:#C13F14"><span class="tag">Konu Sapması</span><p>"The Great Wall of China was originally built to…"</p><small>Çin&rsquo;le ilgili ama konu ticaret yolları değil</small></div>
+    <div class="stackcard" style="--c:#8F6400"><span class="tag">Bağlaç Maskesi</span><p>"Tea, by contrast, contains antioxidants…"</p><small>"by contrast" konu değişimini gizler</small></div>
+    <div class="stackcard" style="--c:#8E2D5A"><span class="tag">Üslup Kırılması</span><p>"And quite honestly, nobody I know…"</p><small>Samimi üslup resmi parçayı kırar</small></div>
+  </div>
+</div></div>
+
+<div class="strips"><div class="wrap"><div id="strips"></div></div></div>
+
+<section id="dersler"><div class="wrap">
+  <div class="sec-head"><span class="no">§01</span><h2>Konu Anlatımı</h2><p class="d">Anlam bütünlüğünü bozan cümlenin altı becerisi: tanıma tabloları, çözüm adımları ve tuzak makineleri.</p></div>
+  <div id="lessons"><noscript><p style="font-size:.9rem;color:var(--ink2);border:2px dashed var(--ink);padding:14px 18px;background:var(--card)">Bu bölüm etkileşimlidir: ders kartları için tarayıcınızda JavaScript açık olmalıdır.</p></noscript></div>
+
+  <div class="modalmod">
+    <p class="h-mini" style="color:var(--ink)">Ek Modül · Beş Adımda Teşhis Rehberi</p>
+    <h3 style="font-size:1.25rem;font-weight:800">Her soruda aynı beş adım — üç dakikalık disiplin</h3>
+    <p style="font-size:.92rem;color:var(--ink2);margin-top:8px">Bu soru türü hız sorunu değil, sıra sorunudur: adımları atlamayan aday, arayan adayı yener.</p>
+    <table><thead><tr><th>Adım</th><th>Ne yapılır?</th><th>Nelere dikkat?</th></tr></thead><tbody>
+      <tr><td>1 · Konu cümlesi</td><td>Pasajın ilk ve son cümlesini oku; paragrafın TEK cümlelik özünü yaz.</td><td>Konu cümlesi çoğu kez ilk cümledir; son cümle özet/sonuç olabilir.</td></tr>
+      <tr><td>2 · İşlev etiketi</td><td>Her cümleye tek kelimelik görev ver: geliştirme / örnek / dönüş / sonuç.</td><td>Etiket alamayan cümle bozan adayıdır — hemen aday listesine al.</td></tr>
+      <tr><td>3 · Zincir testi</td><td>this, they, its, however, therefore sözcüklerinin ADRESİNİ bul.</td><td>Gönderimi havada kalan cümle (zincir kopması) güçlü adaydır.</td></tr>
+      <tr><td>4 · Şık eşleme</td><td>Şıkları işlevlerle eşleştir; yabancı işlevli Roman rakamını işaretle.</td><td>Pozisyona göre değil İŞLEVE göre karar ver; her konumda cevap olabilir.</td></tr>
+      <tr><td>5 · Çıkarıp okuma</td><td>Aday cümleyi çıkar, kalan dördü baştan oku.</td><td>Kalan pasaj pürüzsüz akıyorsa karar kesindir; takılıyorsa adayı değiştir.</td></tr>
+    </tbody></table>
+    <div class="exbox">Beş adım toplam üç dakika sürer; dağınık okuma beş dakikada aynı doğruluğu vermez. Özellikle 5. adımı atlamayın: <b>çıkarma testi</b>, bu soru türünün tek nesnel doğrulama aracıdır.</div>
+  </div>
+
+  <div class="modalmod">
+    <p class="h-mini" style="color:var(--ink)">Ek Modül · Çeldirici Üretim Mekanizması</p>
+    <h3 style="font-size:1.25rem;font-weight:800">Yanlış şıklar neden şüpheli görünür?</h3>
+    <p style="font-size:.92rem;color:var(--ink2);margin-top:8px">Bu soru türünde dört yanlış şık, paragrafın SAĞLAM cümleleridir — şüphe üretmek onların görevidir.</p>
+    <table><thead><tr><th>Şık</th><th>Neden şüpheli görünür?</th><th>Neden bozan değildir?</th></tr></thead><tbody>
+      <tr><td>Konu cümlesi (I)</td><td>Genel ve yüzeysel görünür; "atılabilir" sanılır.</td><td>Paragrafın çatısıdır; çıkarılırsa kalan cümleler havada kalır. (Bu sayfada 3. soruda I bozandır — kural değil, işlev belirleyicidir.)</td></tr>
+      <tr><td>Örnek cümlesi</td><td>Sayılar ve somut veri taşır; "gereksiz detay" izlenimi verir.</td><td>Örnek, savın kanıtıdır: paragraf onu ileri taşır, dışarı atmaz.</td></tr>
+      <tr><td>Dönüş cümlesi</td><td>"however / despite" karşıtlık kurar; akışı böldüğü sanılır.</td><td>Dönüş, zinciri KIRMAZ — yönünü çevirir; adresi doğruysa sağlamdır.</td></tr>
+      <tr><td>Sonuç cümlesi</td><td>Özetlediği için "tekrar" gibi durur.</td><td>Özet, YENİ bir yargı ile kapatır; yalın tekrar değildir.</td></tr>
+      <tr><td>Yakın konu cümlesi</td><td>Kelime örtüşmesi (aynı isim, aynı tema) akrabalık hissi verir.</td><td>Aynı KONU ≠ aynı ODAK: kelime bağı varsa bile paragrafın savına hizmet etmeyen cümle yabancıdır.</td></tr>
+    </tbody></table>
+    <div class="exbox">Altın kural: <b>kelime benzerliği değil, işlev benzerliği</b> arayın. "Çin", "klavye", "çay" gibi örtüşen sözcükler çeldiricinin silahıdır; sizin ölçütünüz tek sorudur: "Bu cümle, konu cümlesinin vaadini ödüyor mu?"</div>
+  </div>
+</div></section>
+
+<section id="akis"><div class="wrap">
+  <div class="sec-head"><span class="no">§02</span><h2>Akış Lab — Cümle İşlevi Simülatörü</h2><p class="d">Cümleyi gör, paragraftaki işlevini (konu cümlesi, geliştirme, örnek, dönüş, sonuç — ya da yabancı: sapma, kopma, detay) teşhis et. 16 gerçek kalıp üzerinde refleks kazanın.</p></div>
+  <div class="lab"><div class="lab-grid">
+    <div>
+      <div class="rootcard"><p class="lbl" id="simCount">CÜMLE 1 / 16</p><p class="root" id="simRoot">Yükleniyor…</p><p class="tr" id="simTr"></p></div>
+      <div class="catbtns" id="simBtns"></div>
+      <div class="simfb" id="simFb"><p class="verdict" id="simVerdict"></p><p id="simNote"></p></div>
+      <div style="margin-top:16px"><button class="btn small" id="simNext">Sıradaki cümle <svg class="ic" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
+    </div>
+    <div class="simside">
+      <div class="simstat"><b id="simScore">0</b><span>doğru teşhis</span></div>
+      <div class="simstat"><b id="simStreak">0</b><span>güncel seri</span></div>
+      <div class="simstat"><b id="simBest">0</b><span>en iyi seri</span></div>
+    </div>
+  </div></div>
+</div></section>
+
+<section id="deneme"><div class="wrap">
+  <div class="sec-head"><span class="no">§03</span><h2>Özgün Deneme</h2><p class="d">Solda beş cümlelik pasaj — cümleye tıklayın → mavi vurgu. Her soruda pasajdaki (I)–(V) cümlelerinden BİRİ anlam bütünlüğünü bozar; şıklar Roman rakamıdır.</p></div>
+  <div class="legend" id="legend"></div>
+  <div id="exam"><noscript><p style="font-size:.9rem;color:var(--ink2);border:2px dashed var(--ink);padding:14px 18px;background:var(--card)">Deneme soruları etkileşimli çalışır; baskıya hazır hâli için JavaScript gerekir.</p></noscript></div>
+  <p class="footnote">Not: Pasajlar bu sayfa için özgün yazılmıştır; şık dağılımı dengelidir (A×4 · B×4 · C×4 · D×4 · E×4). Kendi sorularınızı <b>veri.js</b> içindeki <b>QUESTIONS</b> dizisine aynı yapıyla ekleyebilirsiniz.</p>
+</div></section>
+
+<section id="karne"><div class="wrap">
+  <div class="sec-head"><span class="no">§04</span><h2>Karne</h2><p class="d">İlerlemeniz bu tarayıcıda saklanır (localStorage) — sayfayı kapatıp geri dönseniz bile kaybolmaz.</p></div>
+  <div class="bignum-row">
+    <div class="bignum"><b id="rDone">0</b><span>Çözülen / 20</span></div>
+    <div class="bignum"><b id="rRight" style="color:var(--ok)">0</b><span>Doğru</span></div>
+    <div class="bignum"><b id="rWrong" style="color:var(--bad)">0</b><span>Yanlış</span></div>
+    <div class="bignum"><b id="rPct">%0</b><span>Başarı</span></div>
+  </div>
+  <div id="reportBars"></div>
+  <div class="report-msg" id="reportMsg">Henüz veri yok — denemenin ilk sorusuyla başlayın.</div>
+  <div class="reset-row">
+    <button class="btn small ghost" id="resetBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 2.8-6.5"/><polyline points="3 4 3 10 9 10"/></svg> Karnemi sıfırla</button>
+    <div class="confirmbox" id="confirmBox">
+      <span style="font-size:.85rem;font-weight:700">Tüm cevaplar silinecek. Emin misiniz?</span>
+      <button class="btn small" id="confirmYes">Evet, sıfırla</button>
+      <button class="btn small ghost" id="confirmNo">Vazgeç</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="calisma"><div class="wrap">
+  <div class="sec-head"><span class="no">§05</span><h2>Çalışma Kâğıdı</h2><p class="d">Denemenin baskıya hazır A4 hâli: öğrenci nüshası ve öğretmen anahtarı.</p></div>
+  <div class="ws-bar">
+    <button class="btn" id="wsPrint"><svg class="ic" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Kâğıdı yazdır (PDF)</button>
+    <button class="btn ghost" id="wsKeyBtn">Anahtarı göster</button>
+    <button class="btn ghost" id="wsPrintKey">Sadece anahtarı yazdır</button>
+  </div>
+  <p class="ws-note">Kâğıt A4 boyutunda dizilmiştir (sayfa sonu CSS ile otomatik). "Kâğıdı yazdır" tarayıcının yazdırma penceresini açar; hedef olarak <b>PDF olarak kaydet</b> veya yazıcı seçin, kenar boşluklarını varsayılan bırakın. Anahtar kapalıyken yazdırırsanız yalnızca öğrenci sayfaları çıkar.</p>
+  <div class="ws-doc" id="wsDoc">
+    <div class="ws-cover">
+      <div class="ws-hatch"></div>
+      <div class="ws-top"><span class="ws-mark">A</span><span>OPA FLUENT · YDT ANLAM BÜTÜNLÜĞÜ LAB</span><span class="ws-tr">YDT · YDS · YÖKDİL</span></div>
+      <h2 class="ws-title">Anlam Bütünlüğünü Bozan Cümle</h2>
+      <p class="ws-sub">Özgün Deneme · Çalışma Kâğıdı (Worksheet)</p>
+      <p class="ws-ed">20 Pasaj · 20 Soru · Önerilen Süre: 40 Dakika</p>
+      <div class="ws-id">
+        <span>Adı Soyadı <i></i></span><span>Sınıf / Kurs <i class="w-sm"></i></span><span>Tarih <i class="w-sm"></i></span><span>Puan <i class="w-sm"></i> / 20</span>
+      </div>
+      <div class="ws-inst"><b>Açıklamalar</b><ol>
+        <li>Bu çalışma kâğıdı, her biri beş cümlelik bir pasaja dayanan <b>20 sorudan</b> oluşur. Önerilen süre 40 dakikadır.</li>
+        <li>Her pasajda (I)–(V) ile numaralanmış cümlelerden <b>biri anlam bütünlüğünü bozmaktadır</b>; bu cümlenin numarasını cevap tablosunda ilgili harfle daire içine alın.</li>
+        <li>Şıklar Roman rakamıdır: <b>A) I · B) II · C) III · D) IV · E) V</b>.</li>
+        <li>Çözümden önce konu cümlesini belirleyiniz; her cümleye işlev etiketi (geliştirme / örnek / dönüş / sonuç) veriniz ve zamir–bağlaç adreslerini denetleyiniz.</li>
+        <li>Net hesabı yapmak isterseniz 4 yanlış 1 doğruyu götürür.</li>
+      </ol></div>
+      <div class="ws-answrap"><p class="ws-at">Cevap Tablosu — doğru şıkkın harfini daire içine alınız</p><table class="ws-ans" id="wsAns"></table></div>
+      <div class="ws-rub"><b>Puanlama Rehberi (20 üzerinden)</b><table>
+        <tr><td>18 – 20</td><td>Hedef seviye: süreyi 30 dakikaya indirip tekrar deneyin.</td></tr>
+        <tr><td>14 – 17</td><td>İyi: hatalı becerinin "Tuzak Alanı" dersini tekrar edin.</td></tr>
+        <tr><td>10 – 13</td><td>Gelişiyor: Akış Lab&rsquo;ı (§02) bitmeden tekrar gelmeyin.</td></tr>
+        <tr><td>0 – 9</td><td>Temel: §01 derslerini ve Beş Adımda Teşhis Rehberi&rsquo;ni sırayla işleyin.</td></tr>
+      </table></div>
+      <p class="ws-credit">Opa Fluent Yayınları · Anlam Bütünlüğünü Bozan Cümle · ÖSYM tarzına uygun özgün içerik</p>
+    </div>
+  </div>
+</div></section>
+
+<footer id="iletisim"><div class="wrap">
+  <div>
+    <h5>Kaynak &amp; Künye</h5>
+    <p>Yaklaşım iskeleti: <span class="fl">Reading Soru Kökleri ve Soru Çözüm Yaklaşımları Kitaplığı</span> (Opa Fluent) · Seri: Reading Lab (01) · Diyalog &amp; Durum Lab (02) · Pronoun &amp; Quantifier Lab (03) · Cümle Tamamlama Lab (04) · Çeviri Lab (05) · Anlam Bütünlüğü Lab (06). Bu sayfadaki pasajlar ve çözümler, aynı ÖSYM formatına uygun olarak site için özgün yazılmıştır (20 pasaj · dengeli şık dağılımı).</p>
+    <p style="margin-top:12px">www.opafluent.com · @opafluent · @opafluentexams · +90 531 561 75 22</p>
+  </div>
+  <div>
+    <h5>GitHub → Netlify Dağıtımı (2 dosya)</h5>
+    <div class="deploy"><ol>
+      <li>Depoya <b>iki dosyayı da</b> yükleyin: <code>index.html</code> ve <code>veri.js</code> — aynı klasörde (kök dizin). Bağlantı <code>&lt;script src="veri.js"&gt;</code> satırıyla kurulur.</li>
+      <li>Netlify&rsquo;da <code>Add new site → Import an existing project</code> ile repo&rsquo;yu bağlayın. Build command: <b>yok</b> · Publish directory: <b>kök dizin</b>.</li>
+      <li>Alternatif: iki dosyayı bir klasöre koyup klasörü Netlify&rsquo;a sürükleyin (<code>Deploy manually</code>).</li>
+    </ol></div>
+  </div>
+</div>
+<div class="wrap"><div class="footrow"><span>YDT ANLAM BÜTÜNLÜĞÜ LAB · OPA FLUENT</span><span>İKİ DOSYA · index.html + veri.js</span></div></div></footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══ BAĞLANTI: sorular bu satırla yüklenir ═══ -->
+<script src="veri.js"></script>
+<script>
+(function(){
+function el(t,c,h){var n=document.createElement(t);if(c)n.className=c;if(h!==undefined)n.innerHTML=h;return n;}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function toast(m){var t=document.getElementById('toast');if(!t)return;t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show');},2200);}
+function safe(n,f){try{f();}catch(e){window.__LAB.errs.push(n+': '+e.message);showAllErrs();}}
+var ROM=['I','II','III','IV','V','VI','VII'];
+var OKI='<polyline points="20 6 9 17 4 12"/>';
+var NOI='<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>';
+function showAllErrs(){
+  var h='<b>Sayfa kısmen çalışıyor.</b><br>';
+  if(window.__LAB.errs.length){window.__LAB.errs.slice(0,3).forEach(function(m){h+='• '+m+'<br>';});}
+  h+='• Öneri: index.html ve veri.js dosyalarının İKİSİNİ DE tam kopyaladığınızdan emin olun (her dosyanın sonunda SON işareti vardır).';
+  window.__showErr(h);
+}
+if(!window.__VERI_OK){
+  window.__showErr('<b>veri.js yüklenemedi veya tam kopyalanmadı — sorular görünmüyor.</b><br>'+
+    '• index.html ile AYNI klasörde <b>veri.js</b> adlı dosya olmalı (Netlify/GitHub kök dizini).<br>'+
+    '• veri.js sonunda <b>VERI-SONU</b> işareti görünmüyorsa kopya eksiktir; yeniden kopyalayın.<br>'+
+    '• Tasarım yine açılır; sorular veri.js gelince otomatik bağlanır.');
+  return;
+}
+var CATS=window.CATS||{},LESSONS=window.LESSONS||[],LABTAGS=window.LABTAGS||{},
+    LABITEMS=window.LABITEMS||[],QUESTIONS=window.QUESTIONS||[],SENT={};
+var KEY='ydt-anlam-lab-v1';
+var state={ans:{},marks:{},wskey:false,sim:{score:0,streak:0,best:0,idx:0}};
+try{
+  var raw=localStorage.getItem(KEY);
+  if(raw){var s=JSON.parse(raw);state.ans=s.ans||{};state.marks=s.marks||{};state.wskey=!!s.wskey;
+    var sm=s.sim||{};state.sim.score=sm.score||0;state.sim.streak=sm.streak||0;state.sim.best=sm.best||0;state.sim.idx=sm.idx||0;}
+}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+
+/* doğrulama */
+(function(){
+  var v=[];
+  if(QUESTIONS.length&&Object.keys(CATS).length){
+    QUESTIONS.forEach(function(q){
+      if(!CATS[q.cat])v.push('Soru '+q.id+': bilinmeyen beceri');
+      if(!q.facts||q.facts.length!==5)v.push('Soru '+q.id+': pasaj 5 cümle olmalı');
+      if(!q.opts||q.opts.length!==5)v.push('Soru '+q.id+': şık sayısı 5 değil');
+      if(!(typeof q.ans==='number'&&q.ans>=0&&q.ans<5))v.push('Soru '+q.id+': ans 0-4 değil');
+    });
+  }
+  if(v.length){
+    v.slice(0,5).forEach(function(m){window.__LAB.errs.push('Veri: '+m);});
+    showAllErrs();
+  }
+})();
+
+QUESTIONS.forEach(function(q){
+  (q.facts||[]).forEach(function(f,j){SENT['s'+q.id+'-f'+j]={text:f,node:null};});
+});
+
+/* şeritler + dersler */
+safe('Dersler',function(){
+  var box=document.getElementById('strips');
+  if(box&&LESSONS.length&&Object.keys(CATS).length){
+    Object.keys(CATS).forEach(function(k){
+      var c=CATS[k];
+      var n=QUESTIONS.filter(function(q){return q.cat===k;}).length;
+      var L=null;for(var i=0;i<LESSONS.length;i++){if(LESSONS[i].cat===k){L=LESSONS[i];break;}}
+      var row=el('div','strip');row.style.setProperty('--c',c.color);
+      row.innerHTML='<div class="num">'+c.no+'</div><div class="nm"><b>'+c.name+'</b><span>'+c.en+'</span></div>'+
+        '<div class="ex">'+(L?esc(L.roots[0][0]):'')+'</div><div class="cnt">'+n+' soru</div>';
+      row.addEventListener('click',function(){openLesson(k);
+        var s=document.getElementById('dersler');if(s)s.scrollIntoView({behavior:'smooth'});});
+      box.appendChild(row);
+    });
+  }
+  var lbox=document.getElementById('lessons');var LESSON_EL={};
+  if(lbox&&LESSONS.length){
+    LESSONS.forEach(function(L){
+      var c=CATS[L.cat]||{no:'?',color:'#333'};
+      var wrap=el('div','lesson');wrap.style.setProperty('--c',c.color);
+      var head=el('button','lesson-h');
+      head.innerHTML='<span class="cbar">'+c.no+'</span><span class="tts"><b>'+esc(L.title)+
+        '</b><span>'+esc(L.en)+' · '+L.roots.length+' tanıma satırı</span></span>'+
+        '<span class="chev"><svg class="ic" viewBox="0 0 24 24" width="20" height="20"><polyline points="6 9 12 15 18 9"/></svg></span>';
+      var body=el('div','lesson-b');var grid=el('div','grid');
+      var left=el('div');
+      left.innerHTML='<p class="h-mini">Tanıma Tablosu</p><table class="roots-t">'+
+        L.roots.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';}).join('')+'</table>';
+      var right=el('div');
+      right.innerHTML='<p class="h-mini">Çözüm Yaklaşımı</p><ul class="steps">'+
+        L.steps.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul>'+
+        '<div class="trapbox"><b>Tuzak Alanı · '+esc(L.trap.t)+'</b>'+L.trap.d+'</div>';
+      grid.appendChild(left);grid.appendChild(right);body.appendChild(grid);
+      wrap.appendChild(head);wrap.appendChild(body);lbox.appendChild(wrap);
+      head.addEventListener('click',function(){wrap.classList.toggle('open');});
+      LESSON_EL[L.cat]=wrap;
+    });
+  }
+  window.openLesson=function(cat){for(var k in LESSON_EL){LESSON_EL[k].classList.toggle('open',k===cat);}};
+});
+
+/* akış lab */
+var simOrder=[];
+safe('Akış Lab',function(){
+  var b=document.getElementById('simBtns');if(!b)return;
+  if(!LABITEMS.length||!Object.keys(LABTAGS).length){b.innerHTML='<p class="footnote">Akış Lab verisi yok.</p>';return;}
+  function shuf(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  simOrder=shuf(LABITEMS.map(function(_,i){return i;}));
+  Object.keys(LABTAGS).forEach(function(k){
+    var f=LABTAGS[k];
+    var btn=el('button','catb',f.name);btn.style.setProperty('--c',f.color);btn.setAttribute('data-tag',k);
+    btn.addEventListener('click',function(){simAnswer(k,btn);});b.appendChild(btn);
+  });
+  var nx=document.getElementById('simNext');if(nx)nx.addEventListener('click',simNext);
+  if(state.sim.idx>=simOrder.length)state.sim.idx=0;
+  rStats();rRoot();
+  function rRoot(){
+    var i=state.sim.idx%simOrder.length;var r=LABITEMS[simOrder[i]];
+    document.getElementById('simCount').textContent='CÜMLE '+(i+1)+' / '+simOrder.length;
+    document.getElementById('simRoot').textContent=r.en;
+    document.getElementById('simTr').textContent='TR: '+r.tr;
+    Array.prototype.forEach.call(document.querySelectorAll('.catb'),function(x){x.classList.remove('wasright','waswrong');x.disabled=false;});
+    var f=document.getElementById('simFb');if(f)f.classList.remove('show');
+  }
+  function simAnswer(k,btn){
+    var f=document.getElementById('simFb');if(f&&f.classList.contains('show'))return;
+    var r=LABITEMS[simOrder[state.sim.idx%simOrder.length]];var ok=(k===r.tag);
+    Array.prototype.forEach.call(document.querySelectorAll('.catb'),function(x){x.disabled=true;
+      if(x.getAttribute('data-tag')===r.tag)x.classList.add('wasright');});
+    if(!ok)btn.classList.add('waswrong');
+    if(ok){state.sim.score++;state.sim.streak++;state.sim.best=Math.max(state.sim.best,state.sim.streak);}else{state.sim.streak=0;}
+    save();rStats();
+    var v=document.getElementById('simVerdict');
+    if(v){v.textContent=ok?('Doğru teşhis — İşlev: '+LABTAGS[r.tag].name):('Yanlış — bu cümle '+LABTAGS[r.tag].name+' işlevini taşıyordu');v.className='verdict '+(ok?'ok':'no');}
+    var nt=document.getElementById('simNote');if(nt)nt.innerHTML=r.note;
+    if(f)f.classList.add('show');
+  }
+  function simNext(){state.sim.idx++;
+    if(state.sim.idx%simOrder.length===0){simOrder=shuf(simOrder);toast('Cümle destesi yeniden karıştırıldı');}
+    save();rRoot();}
+  function rStats(){
+    document.getElementById('simScore').textContent=state.sim.score;
+    document.getElementById('simStreak').textContent=state.sim.streak;
+    document.getElementById('simBest').textContent=state.sim.best;}
+});
+
+/* işaretler */
+function markNode(k){return document.getElementById(k)||document.querySelector('[data-mk="'+k+'"]');}
+function applyMarkNode(k){var n=markNode(k);if(n){n.classList.add('umark');var p=n.querySelector('.pen');if(p)p.classList.add('on');}}
+function toggleMark(k,node){
+  if(state.marks[k])delete state.marks[k];else state.marks[k]=1;
+  node.classList.toggle('umark',!!state.marks[k]);
+  var p=node.querySelector('.pen');if(p)p.classList.toggle('on',!!state.marks[k]);
+  save();
+}
+
+/* deneme */
+safe('Deneme',function(){
+  var legend=document.getElementById('legend');var exam=document.getElementById('exam');if(!exam)return;
+  if(legend&&Object.keys(CATS).length){
+    Object.keys(CATS).forEach(function(k){var c=CATS[k];var ch=el('span','chip',c.name);
+      ch.style.setProperty('--c',c.color);legend.appendChild(ch);});
+  }
+  if(!QUESTIONS.length){exam.innerHTML='<p class="footnote">Soru verisi yüklenemedi.</p>';return;}
+  var TOTAL=QUESTIONS.length;
+  exam.appendChild(el('div','partdiv','<b>ANLAM BÜTÜNLÜĞÜNÜ BOZAN CÜMLE</b><span>Sorular 1–'+TOTAL+' · beş cümlelik pasaj + Roman rakamlı şıklar</span>'));
+  function buildS(q){
+    var c=CATS[q.cat]||{name:'?',color:'#333'};
+    var sq=el('div','sq');sq.style.setProperty('--c',c.color);sq.id='q'+q.id;
+    var left=el('div','sq-b');
+    left.innerHTML='<div class="sq-tab"><b>PARAGRAF DOSYASI</b><span>beş cümle · tıkla-vurgu</span></div>';
+    var body=el('div','sq-body');
+    (q.facts||[]).forEach(function(f,j){
+      var id='s'+q.id+'-f'+j;
+      var p=el('p','fact','<span class="fr">('+ROM[j]+')</span>'+esc(f));
+      p.id=id;p.title='Tıklayıp işaretle / kaldır';
+      p.addEventListener('click',function(){toggleMark(id,p);});
+      body.appendChild(p);if(SENT[id])SENT[id].node=p;});
+    left.appendChild(body);
+    var right=el('div','sq-r');
+    var top=el('div','qtop');
+    top.innerHTML='<span class="chip">'+c.name+'</span><span class="qn">SORU '+q.id+' / '+TOTAL+
+      '</span><span class="pts">5 şık · tek deneme</span>';
+    var stem=el('p','stem',q.stem);
+    stem.setAttribute('data-mk',q.id+'#stem');stem.title='Tıklayıp bu satırı işaretle';
+    stem.addEventListener('click',function(){toggleMark(q.id+'#stem',stem);});
+    var opts=el('div','opts');
+    q.opts.forEach(function(o,i){
+      var d=el('div','opt');d.setAttribute('data-mk',q.id+'#o'+i);
+      d.innerHTML='<span class="key">'+'ABCDE'[i]+'</span><span>'+esc(o[0])+'</span><span class="mk"></span>'+
+        '<button class="pen" title="Şıkkı işaretle / kaldır"><svg class="ic" viewBox="0 0 24 24" width="13" height="13"><path d="M17 3l4 4L8 20l-5 1 1-5L17 3z"/></svg></button>';
+      d.addEventListener('click',function(){pick(q,i);});
+      d.querySelector('.pen').addEventListener('click',function(e){e.stopPropagation();toggleMark(q.id+'#o'+i,d);});
+      opts.appendChild(d);});
+    right.appendChild(top);right.appendChild(stem);right.appendChild(opts);
+    right.appendChild(el('div','fb'));
+    sq.appendChild(left);sq.appendChild(right);return sq;
+  }
+  function pick(q,i){
+    if(state.ans[q.id]!==undefined)return;
+    state.ans[q.id]=i;save();paintQ(q);updateReport();
+  }
+  function paintQ(q){
+    var card=document.getElementById('q'+q.id);if(!card)return;
+    var c=CATS[q.cat]||{name:'?',color:'#333'};
+    card.classList.add('answered');
+    var chosen=state.ans[q.id];var ok=(chosen===q.ans);
+    Array.prototype.forEach.call(card.querySelectorAll('.opt'),function(b,i){
+      b.classList.toggle('correct',i===q.ans);b.classList.toggle('wrongpick',i===chosen&&!ok);
+      b.querySelector('.mk').innerHTML=(i===q.ans)?OKI:((i===chosen)?NOI:'');});
+    var fb=card.querySelector('.fb');if(!fb)return;
+    fb.classList.add('show');
+    var evq=(q.ev||[]).map(function(id){var s=SENT[id];if(!s)return '';
+      var m=id.match(/-f(\d+)$/);
+      return '('+ROM[m?parseInt(m[1],10):0]+') '+esc(s.text);}).join(' ');
+    var H=[];
+    H.push('<div class="fb-h '+(ok?'ok':'no')+'"><svg class="ic" viewBox="0 0 24 24" width="18" height="18">'+(ok?OKI:NOI)+'</svg>');
+    H.push(ok?('Doğru — '+c.name+' becerisi yerinde'):('Yanlış — doğru cevap: '+'ABCDE'[q.ans])+'</div>');
+    if(ok)H.push('</div>');
+    H.push('<div class="fb-b">');
+    if(!ok){H.push('<h4>Seçimin analizi · <b>'+'ABCDE'[chosen]+'</b></h4><p class="fb-p">'+esc(q.opts[chosen][1])+'</p>');}
+    H.push('<h4>Neden <b>'+'ABCDE'[q.ans]+' → ('+ROM[q.ans]+')</b> doğru?</h4>');
+    H.push('<p class="fb-p">'+esc(q.opts[q.ans][1]).replace(/^BOZAN\.\s*/,'')+'</p>');
+    H.push('<p class="fb-p" style="margin-top:6px">'+esc(q.why)+'</p>');
+    H.push('<h4>Kanıt cümleler (bozan + omurga)</h4><div class="evq">'+evq+'</div>');
+    H.push('<h4>Şık şık geribildirim — çeldirici dökümü</h4><ul class="dump">');
+    q.opts.forEach(function(o,i){
+      var cls=(i===q.ans?'okr':'')+((i===chosen&&i!==q.ans)?' mine':'');
+      var mk=(i===q.ans?' ✓':((i===chosen)?' ✗':''));
+      H.push('<li class="'+cls+'"><span class="k">'+'ABCDE'[i]+mk+'</span><span>'+esc(o[1])+'</span></li>');});
+    H.push('</ul><h4>Saha notları</h4><div class="fb-duo">');
+    H.push('<div class="fb-box tint"><b>Kökteki ipucu</b>'+esc(q.clue)+'</div>');
+    H.push('<div class="fb-box"><b>Stratejik not</b>'+esc(q.strat)+'</div></div>');
+    H.push('<div class="fb-act"><button class="btn small evbtn">Kanıtı paragrafta göster</button></div></div>');
+    fb.innerHTML=H.join('');
+    fb.querySelector('.evbtn').addEventListener('click',evT(q,card));
+  }
+  function evT(q,card){return function(){
+    var btn=card.querySelector('.evbtn');if(!btn)return;
+    if(!btn.getAttribute('data-orig'))btn.setAttribute('data-orig',btn.textContent);
+    var wasOn=(btn.getAttribute('data-on')==='1');
+    Array.prototype.forEach.call(document.querySelectorAll('.fact.evid'),function(s){s.classList.remove('evid');});
+    Array.prototype.forEach.call(document.querySelectorAll('.evbtn'),function(b){b.setAttribute('data-on','');
+      if(b.getAttribute('data-orig'))b.textContent=b.getAttribute('data-orig');});
+    if(wasOn)return;
+    var first=null;
+    (q.ev||[]).forEach(function(id){var s=SENT[id]&&SENT[id].node;
+      if(s){s.classList.add('evid');if(!first)first=s;}});
+    btn.setAttribute('data-on','1');btn.textContent='Vurguyu kaldır';
+    if(first){first.scrollIntoView({behavior:'smooth',block:'center'});}
+  };}
+  QUESTIONS.forEach(function(q){exam.appendChild(buildS(q));});
+  Object.keys(state.marks).forEach(applyMarkNode);
+  QUESTIONS.forEach(function(q){if(state.ans[q.id]!==undefined)paintQ(q);});
+});
+
+/* karne */
+function updateReport(){
+  var done=Object.keys(state.ans).length;var right=0;
+  QUESTIONS.forEach(function(q){if(state.ans[q.id]!==undefined&&state.ans[q.id]===q.ans)right++;});
+  var wrong=done-right;var TOTAL=QUESTIONS.length||20;
+  document.getElementById('rDone').textContent=done;
+  document.getElementById('rRight').textContent=right;
+  document.getElementById('rWrong').textContent=wrong;
+  document.getElementById('rPct').textContent='%'+(done?Math.round(right/done*100):0);
+  var bars=document.getElementById('reportBars');if(!bars)return;
+  bars.innerHTML='';var best=null,worst=null;
+  Object.keys(CATS).forEach(function(k){
+    var c=CATS[k];var qs=QUESTIONS.filter(function(q){return q.cat===k;});
+    var d=qs.filter(function(q){return state.ans[q.id]!==undefined;}).length;
+    var r=qs.filter(function(q){return state.ans[q.id]!==undefined&&state.ans[q.id]===q.ans;}).length;
+    var pct=d?Math.round(r/d*100):0;
+    if(d>0){if(!best||pct>best.p)best={p:pct,n:c.name};if(!worst||pct<worst.p)worst={p:pct,n:c.name};}
+    var row=el('div','catbar');row.style.setProperty('--c',c.color);
+    row.innerHTML='<div class="nm">'+c.name+'<span>'+c.en+'</span></div>'+
+      '<div class="track"><div class="fill" style="width:'+pct+'%"></div></div>'+
+      '<div class="sc">'+(d?(r+' / '+d):('— / '+qs.length))+'</div>';
+    bars.appendChild(row);});
+  var msg=document.getElementById('reportMsg');if(!msg)return;
+  if(!done){msg.textContent='Henüz veri yok — denemenin ilk sorusuyla başlayın.';}
+  else if(done<QUESTIONS.length){msg.innerHTML='<b>'+done+'/'+TOTAL+'</b> soru çözüldü. Kalan '+(TOTAL-done)+
+    ' soru tamamlanınca karnen kesinleşecek'+(best?(' — şimdilik en güçlü alanın: <b>'+best.n+'</b> (%'+best.p+')'):'')+'.';}
+  else{msg.innerHTML='Deneme tamam! Doğru: <b>'+right+'/'+TOTAL+'</b> · Başarı: <b>%'+Math.round(right/TOTAL*100)+
+    '</b>. En güçlü alanın <b>'+best.n+'</b> (%'+best.p+'), çalışman gereken alan <b>'+worst.n+'</b> (%'+worst.p+
+    '). İlgili dersin "Tuzak Alanı" kutusunu ve Beş Adımda Teşhis Rehberi’ni yeniden oku, Akış Lab’ı bir tur at, sonra tekrar dene.';}
+}
+safe('Karne',function(){updateReport();});
+
+safe('Sıfırlama',function(){
+  var rb=document.getElementById('resetBtn'),cb=document.getElementById('confirmBox'),
+      cy=document.getElementById('confirmYes'),cn=document.getElementById('confirmNo');
+  if(!rb||!cb||!cy||!cn)return;
+  rb.addEventListener('click',function(){cb.classList.add('show');});
+  cn.addEventListener('click',function(){cb.classList.remove('show');});
+  cy.addEventListener('click',function(){
+    state.ans={};save();
+    QUESTIONS.forEach(function(q){var c=document.getElementById('q'+q.id);if(!c)return;
+      c.classList.remove('answered');
+      Array.prototype.forEach.call(c.querySelectorAll('.opt'),function(b){b.classList.remove('correct','wrongpick');
+        var m=b.querySelector('.mk');if(m)m.innerHTML='';});
+      var fb=c.querySelector('.fb');if(fb){fb.classList.remove('show');fb.innerHTML='';}});
+    Array.prototype.forEach.call(document.querySelectorAll('.fact.evid'),function(s){s.classList.remove('evid');});
+    Array.prototype.forEach.call(document.querySelectorAll('.evbtn'),function(b){b.setAttribute('data-on','');
+      if(b.getAttribute('data-orig'))b.textContent=b.getAttribute('data-orig');});
+    cb.classList.remove('show');updateReport();
+    toast('Karne sıfırlandı — taze başlangıçlar');
+    var d=document.getElementById('deneme');if(d)d.scrollIntoView({behavior:'smooth'});});
+});
+
+/* çalışma kâğıdı */
+safe('Kâğıt',function(){
+  var doc=document.getElementById('wsDoc');if(!doc)return;
+  var ansT=document.getElementById('wsAns');
+  if(ansT&&QUESTIONS.length){
+    for(var g=0;g<3;g++){
+      var qs=QUESTIONS.slice(g*8,g*8+8);if(!qs.length)continue;
+      var tr1=el('tr'),tr2=el('tr');
+      qs.forEach(function(q){tr1.appendChild(el('th',null,String(q.id)));
+        var td=el('td');for(var L=0;L<5;L++)td.appendChild(el('span','bub','ABCDE'[L]));tr2.appendChild(td);});
+      ansT.appendChild(tr1);ansT.appendChild(tr2);}}
+  function wq(q){
+    var pas=(q.facts||[]).map(function(f,j){return '<b>('+ROM[j]+')</b> '+esc(f);}).join(' ');
+    return '<p class="ws-qq">'+pas+'</p>'+
+      '<p class="ws-qq"><b>'+q.id+'.</b> '+q.stem+'</p>'+
+      '<ul class="ws-oo">'+q.opts.map(function(o,i){
+        return '<li><span class="k">'+'ABCDE'[i]+')</span><span>'+esc(o[0])+'</span></li>';}).join('')+'</ul>';
+  }
+  var pas=el('div','ws-pas');
+  pas.innerHTML='<div class="ws-ph"><span class="ws-pno">DENEME</span><h3>Anlam Bütünlüğünü Bozan Cümle</h3>'+
+    '<span class="ws-pm">Sorular 1–'+QUESTIONS.length+' · beş cümlelik pasajlar</span></div>'+
+    '<p class="ws-note-line">Önce konu cümlesini bulunuz; her cümleye işlev etiketi verip şıkları eşleştiriniz.</p>';
+  QUESTIONS.forEach(function(q){pas.appendChild(el('div','ws-q',wq(q)));});
+  doc.appendChild(pas);
+  var ksum=Object.keys(CATS).map(function(k){var c=CATS[k];
+    var qs=QUESTIONS.filter(function(q){return q.cat===k;});
+    return '<tr><td>'+c.name+'</td><td>'+qs.length+'</td><td>'+qs.map(function(q){return q.id;}).join(', ')+'</td></tr>';}).join('');
+  var kqs=QUESTIONS.map(function(q){
+    var c=CATS[q.cat]||{name:'?',color:'#333'};
+    var ev=(q.ev||[]).map(function(id){var s=SENT[id];if(!s)return '';
+      var m=id.match(/-f(\d+)$/);
+      return '('+ROM[m?parseInt(m[1],10):0]+') '+esc(s.text);}).join(' ');
+    return '<div class="ws-kq" style="--c:'+c.color+'"><p class="ws-kqh"><b>'+q.id+' — DOĞRU CEVAP: '+
+      'ABCDE'[q.ans]+' → ('+ROM[q.ans]+')</b><span>'+c.name+'</span></p><p class="ws-kw">'+esc(q.why)+
+      '</p><p class="ws-ke"><b>Kanıt:</b> '+ev+'</p><p class="ws-ks"><b>Strateji:</b> '+esc(q.strat)+'</p></div>';}).join('');
+  var key=el('div','ws-key');var KH=[];
+  KH.push('<div class="ws-kh"><b>Cevap Anahtarı · Öğretmen Nüshası</b><span>Bu sayfaları öğrenciye dağıtmadan önce ayırınız</span></div>');
+  if(QUESTIONS.length){KH.push('<div class="ws-kgrid">'+QUESTIONS.map(function(q){
+    return '<div class="kg"><span>'+q.id+'</span><b>'+'ABCDE'[q.ans]+'</b></div>';}).join('')+'</div>');}
+  KH.push('<table class="ws-ksum"><thead><tr><th>Beceri Kategorisi</th><th>Soru Sayısı</th><th>Soru Numaraları</th></tr></thead><tbody>'+ksum+'</tbody></table>');
+  KH.push('<p class="ws-kfoot">Şık dağılımı dengelidir: A×4 · B×4 · C×4 · D×4 · E×4 (20 soru). Pasajlar bu sayfa için özgün yazılmıştır.</p>');
+  KH.push('<div>'+kqs+'</div>');
+  key.innerHTML=KH.join('');doc.appendChild(key);
+  var bP=document.getElementById('wsPrint'),bK=document.getElementById('wsKeyBtn'),bPK=document.getElementById('wsPrintKey');
+  function apply(){document.body.classList.toggle('hidekey',!state.wskey);
+    if(bK)bK.textContent=state.wskey?'Anahtarı kapat':'Anahtarı göster';}
+  if(bP)bP.addEventListener('click',function(){window.print();});
+  if(bK)bK.addEventListener('click',function(){state.wskey=!state.wskey;save();apply();
+    toast(state.wskey?'Anahtar açık — yazdırmada dahil edilir':'Anahtar kapalı — yazdırmada çıkmaz');});
+  if(bPK)bPK.addEventListener('click',function(){document.body.classList.add('onlykey');window.print();});
+  window.addEventListener('afterprint',function(){document.body.classList.remove('onlykey');});
+  apply();
+});
+
+/* üst menü */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){Array.prototype.forEach.call(document.querySelectorAll('#topnav a'),function(a){
+      a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id);});}});},
+    {rootMargin:'-40% 0px -55% 0px'});
+  ['dersler','akis','deneme','karne','calisma'].forEach(function(id){
+    var n=document.getElementById(id);if(n)io.observe(n);});
+}
+if(window.__LAB.errs.length===0){
+  try{console.log('Anlam Bütünlüğü Lab: '+QUESTIONS.length+' pasaj, '+LESSONS.length+' ders — OK');}catch(e){}
+}else{showAllErrs();}
+})();
+</script>
+<!-- DOSYA-SONU: Bu satırı görüyorsanız index.html tamamdır. -->
+</body>
+</html>
